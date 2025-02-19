@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from "react";
-import api from "../api/axiosConfig";
-import ProductCard from "./ProductCard"; // ✅ Import komponen kartu produk
+import api from "../config/axiosapi"; // ✅ Gunakan konfigurasi Axios dari config
+import ProductCard from "./ProductCard"; // ✅ Pastikan file ini ada di folder yang sesuai
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // ✅ Tambahkan state loading
 
   useEffect(() => {
-    api.get("/products")
-      .then((response) => setProducts(response.data))
-      .catch((error) => console.error("Error fetching products:", error));
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get("/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false); // ✅ Pastikan loading selesai
+      }
+    };
+
+    fetchProducts();
   }, []);
 
   return (
     <div style={styles.container}>
       <h2 style={styles.title}>Daftar Produk Light Stick</h2>
-      <div style={styles.grid}>
-        {products.length > 0 ? (
-          products.map((product) => <ProductCard key={product._id} product={product} />)
-        ) : (
-          <p>Loading produk...</p>
-        )}
-      </div>
+
+      {loading ? ( // ✅ Tampilkan loading jika masih fetching data
+        <p>Loading produk...</p>
+      ) : (
+        <div style={styles.grid}>
+          {products.length > 0 ? (
+            products.map((product) => <ProductCard key={product._id} product={product} />)
+          ) : (
+            <p>Produk tidak tersedia.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };
