@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../config/axiosapi"; // ✅ Gunakan konfigurasi Axios dari config
 import ProductCard from "./ProductCard"; // ✅ Pastikan file ini ada di folder yang sesuai
+import ProductList from "./ProductList";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
