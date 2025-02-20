@@ -4,6 +4,7 @@ import {
   StyleSheet, TextInput, RefreshControl 
 } from 'react-native';
 import axios from 'axios';
+import { API_BASE_URL } from '../utils/config'; // Import API URL
 import ProductCard from '../components/ProductCard';
 
 const HomeScreen = ({ navigation }) => {
@@ -19,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('https://lightstickshop-backend-production.up.railway.app/products');
+      const response = await axios.get(`${API_BASE_URL}/products`);
       setProducts(response.data);
       setFilteredProducts(response.data);
     } catch (err) {
@@ -84,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
       {/* Daftar Produk */}
       <FlatList
         data={filteredProducts}
-        keyExtractor={(item) => item._id}
+        keyExtractor={(item) => item._id || item.id} // Pastikan ID sesuai API
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('Product', { product: item })}>
             <ProductCard product={item} />

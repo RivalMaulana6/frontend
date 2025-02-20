@@ -2,9 +2,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
-import ProductScreen from '../Screens/ProductScreen';
-import CartScreen from '../Screens/CartScreen';
-import CheckoutScreen from '../Screens/CheckoutScreen';
+import ProductScreen from '../screens/ProductScreen';
+import CartScreen from '../screens/CartScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
 import ContactScreen from '../screens/ContactScreen'; // ✅ Tambahkan ContactScreen
 
 const Stack = createNativeStackNavigator();
