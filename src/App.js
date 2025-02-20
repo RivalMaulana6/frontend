@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { View, Text } from "react-native";
-import AppNavigator from "./Navigation/AppNavigator";
+import AppNavigator from "../navigation/AppNavigator";
 import ProductList from "./components/ProductList"; // Import daftar produk
 
 export default function App() {
