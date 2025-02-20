@@ -36,3 +36,21 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+# Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Expo & Metro bundler
+.expo/
+.expo-shared/
+babel.config.js.cache
+
+# Android & iOS build files
+android/
+ios/
+*.apk
+*.aab
+
+# Environment variables
+.env
