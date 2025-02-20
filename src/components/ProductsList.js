@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "../config/axiosapi"; // ✅ Gunakan konfigurasi Axios dari config
+import api from "../config/axiosapi"; // ✅ Pastikan konfigurasi API benar
 import ProductCard from "./ProductCard"; // ✅ Pastikan file ini ada di folder yang sesuai
-import ProductList from "./ProductList";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +10,7 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await api.get("/products");
+        console.log("Fetched Products:", response.data); // ✅ Cek apakah data diterima
         setProducts(response.data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -21,6 +21,26 @@ const ProductList = () => {
 
     fetchProducts();
   }, []);
+
+  const styles = React.useMemo(
+    () => ({
+      container: {
+        padding: "20px",
+        textAlign: "center",
+      },
+      title: {
+        fontSize: "24px",
+        marginBottom: "20px",
+      },
+      grid: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+        gap: "20px",
+        justifyContent: "center",
+      },
+    }),
+    []
+  );
 
   return (
     <div style={styles.container}>
@@ -41,22 +61,6 @@ const ProductList = () => {
   );
 };
 
-// CSS Styling
-const styles = {
-  container: {
-    padding: "20px",
-    textAlign: "center",
-  },
-  title: {
-    fontSize: "24px",
-    marginBottom: "20px",
-  },
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-    gap: "20px",
-    justifyContent: "center",
-  },
-};
+
 
 export default ProductList;
