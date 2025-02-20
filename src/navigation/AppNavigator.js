@@ -4,7 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../Screens/ProductScreen';
 import CartScreen from '../Screens/CartScreen';
 import CheckoutScreen from '../Screens/CheckoutScreen';
-import ContactScreen from '../Screens/cantact'; // ✅ Tambahkan ContactScreen
+import ContactScreen from '../screens/ContactScreen'; // ✅ Tambahkan ContactScreen
 
 const Stack = createNativeStackNavigator();
 
