@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import api from "../config/axiosapi"; // ✅ Pastikan konfigurasi API benar
+import api from "../config/axiosConfig"; // ✅ Pastikan konfigurasi API benar
 import ProductCard from "./ProductCard"; // ✅ Pastikan file ini ada di folder yang sesuai
 
 const ProductList = () => {
