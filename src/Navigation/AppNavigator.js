@@ -5,6 +5,7 @@ import ProductScreen from '../Screens/ProductScreen';
 import CartScreen from '../Screens/CartScreen';
 import CheckoutScreen from '../Screens/CheckoutScreen';
 import ContactScreen from '../Screens/cantact'; // ✅ Tambahkan ContactScreen
+import AppNavigator from "./navigation/AppNavigator";
 
 const Stack = createNativeStackNavigator();
 
