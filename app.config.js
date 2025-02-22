@@ -10,6 +10,7 @@ export default {
     scheme: "light-stick-shop",
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
+    owner: "rivalmaulans", // Tambahkan ini agar tidak error saat `eas build`
     ios: {
       supportsTablet: true,
     },
@@ -42,7 +43,7 @@ export default {
     extra: {
       API_BASE_URL: process.env.EXPO_PUBLIC_API_BASE_URL || "https://lightstickshop-backend-production-caef.up.railway.app",
       eas: {
-        projectId: "be0acb96-91b2-4e72-936b-fb7dbd4e9fc4", // Tambahkan ini untuk EAS Build
+        projectId: "be0acb96-91b2-4e72-936b-fb7dbd4e9fc4",
       },
     },
   },
