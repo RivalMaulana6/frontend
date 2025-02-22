@@ -6454,7 +6454,7 @@ expo-updates-interface@~1.0.0:
   resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-1.0.0.tgz#b98c66b800d29561c62409556948b2af3d5316e5"
   integrity sha512-93oWtvULJOj+Pp+N/lpTcFfuREX1wNeHtp7Lwn8EbzYYmdn37MvZU3TPW2tYYCZuhzmKEXnUblYcruYoDu7IrQ==
 
-expo-updates@~0.26.19:
+expo-updates@^0.26.19:
   version "0.26.19"
   resolved "https://registry.yarnpkg.com/expo-updates/-/expo-updates-0.26.19.tgz#fdcafa8973d558b2160e7c58c930d7527f36397a"
   integrity sha512-h40UrG0n1nCb2na1ffz+mNQtsnr7/BxxK+EtXJSqCaD9PIGaTGe20tasmo1oVskv3s37zfv0x93+6uTjanieQg==
@@ -8276,7 +8276,7 @@ jest-environment-node@^29.6.3, jest-environment-node@^29.7.0:
     jest-mock "^29.7.0"
     jest-util "^29.7.0"
 
-jest-expo@~52.0.4:
+jest-expo@^52.0.4:
   version "52.0.4"
   resolved "https://registry.yarnpkg.com/jest-expo/-/jest-expo-52.0.4.tgz#d8316fdcaa9c43fc7f57f2585251cf6f665b888e"
   integrity sha512-6+MDQnpwWi3Cka+GvzncCEw8y8LTLiulf9RMII9MZMmML68dRp+njYvZQQutRkF+WwVZLM2id59puYAsKBL1Qg==
