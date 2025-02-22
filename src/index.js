@@ -1,20 +1,16 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
-import { name as appName } from './app.json';
-// Konfigurasi React Native Web
-import { createRoot } from 'react-dom/client';
 import { registerRootComponent } from 'expo';
+import { createRoot } from 'react-dom/client';
+import App from './App';
 
+// Konfigurasi React Native Web
 const rootTag = document.getElementById('root');
 const root = createRoot(rootTag);
-root.render(<App />);
 
-registerRootComponent(App);
-
-// Render aplikasi ke dalam root element di index.html
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
+
+// Mendaftarkan aplikasi untuk Expo
+registerRootComponent(App);
