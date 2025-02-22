@@ -6312,7 +6312,7 @@ expo-blur@~14.0.3:
   resolved "https://registry.yarnpkg.com/expo-blur/-/expo-blur-14.0.3.tgz#656d6b2442bfbbfb2a6608c6bc1151b29bce6698"
   integrity sha512-BL3xnqBJbYm3Hg9t/HjNjdeY7N/q8eK5tsLYxswWG1yElISWZmMvrXYekl7XaVCPfyFyz8vQeaxd7q74ZY3Wrw==
 
-expo-constants@^17.0.7, expo-constants@~17.0.5, expo-constants@~17.0.7:
+expo-constants@~17.0.5, expo-constants@~17.0.7:
   version "17.0.7"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-17.0.7.tgz#630d42ec7d142065aeb75958becb9a27e0907d24"
   integrity sha512-sp5NUiV17I3JblVPIBDgoxgt7JIZS30vcyydCYHxsEoo+aKaeRYXxGYilCvb9lgI6BBwSL24sQ6ZjWsCWoF1VA==
@@ -6398,7 +6398,7 @@ expo-modules-core@2.2.2:
   dependencies:
     invariant "^2.2.4"
 
-expo-router@^4.0.17:
+expo-router@~4.0.17:
   version "4.0.17"
   resolved "https://registry.yarnpkg.com/expo-router/-/expo-router-4.0.17.tgz#8cecc68f189fd93d69b239986f63e040ee15f63a"
   integrity sha512-8ybo6bVwdG1S9hafh9BTOjX1hpCgomdUvs6hKHMM01koo8mQ7zocH/+zxQeaMVDxGhboz2dO5GiDchWJ0OheRA==
@@ -11537,7 +11537,7 @@ react-native-safe-area-view@^0.14.9:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-screens@4.4.0:
+react-native-screens@~4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-4.4.0.tgz#3fcbcdf1bbb1be2736b10d43edc3d4e69c37b5aa"
   integrity sha512-c7zc7Zwjty6/pGyuuvh9gK3YBYqHPOxrhXfG1lF4gHlojQSmIx2piNbNaV+Uykj+RDTmFXK0e/hA+fucw/Qozg==
