@@ -1,26 +1,44 @@
 {
   "expo": {
-    "extra": {
-      "eas": {
-        "projectId": "be0acb96-91b2-4e72-936b-fb7dbd4e9fc4"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/be0acb96-91b2-4e72-936b-fb7dbd4e9fc4"
+    "name": "frontend",
+    "slug": "frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.rivalmaulans.frontend"
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
-    "ios": {},
     "web": {
-      "output": "static"
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
     ],
-    "owner": "rivalmaulans"
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "API_BASE_URL": process.env.EXPO_PUBLIC_API_BASE_URL
+    }
   }
 }
