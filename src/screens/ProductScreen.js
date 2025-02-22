@@ -1,55 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, Image, Button, StyleSheet, Alert } from 'react-native';
-import { useCart } from '../context/CartContext';
+import React, { useEffect, useState } from "react";
+import { View, Text, FlatList, Image, Button, StyleSheet, Alert } from "react-native";
+import { useCart } from "../context/CartContext";
+import { API_BASE_URL } from "../utils/config";
 
 const ProductScreen = ({ route, navigation }) => {
-  const { product } = route.params;
   const { cart, addToCart } = useCart();
-  const [isInCart, setIsInCart] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [isInCart, setIsInCart] = useState({});
 
   useEffect(() => {
-    // Cek apakah produk sudah ada di keranjang
-    const found = cart.some(item => item._id === product._id);
-    setIsInCart(found);
+    fetch(`${API_BASE_URL}/api/products`)
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        const cartStatus = data.reduce((acc, product) => {
+          acc[product._id] = cart.some(item => item._id === product._id);
+          return acc;
+        }, {});
+        setIsInCart(cartStatus);
+      })
+      .catch((error) => console.error("Error fetching products:", error));
   }, [cart]);
 
-  const handleAddToCart = () => {
-    if (isInCart) {
-      Alert.alert("Peringatan", "Produk ini sudah ada di keranjang!");
-      return;
+  const handleAddToCart = async (productId) => {
+    const userId = "USER_ID_TEST"; // Gantilah dengan userId dari user yang sedang login
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/carts/${userId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId, quantity: 1 }),
+      });
+
+      if (response.ok) {
+        Alert.alert("Sukses", "Produk berhasil ditambahkan ke keranjang!");
+      } else {
+        Alert.alert("Error", "Gagal menambahkan produk ke keranjang.");
+      }
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      Alert.alert("Error", "Terjadi kesalahan saat menambahkan produk.");
     }
-
-    addToCart(product);
-    Alert.alert("Berhasil", `${product.name} telah ditambahkan ke keranjang!`);
-    setIsInCart(true);
   };
-
   return (
     <View style={styles.container}>
-      <Image source={{ uri: product.image }} style={styles.image} />
-      <Text style={styles.name}>{product.name}</Text>
-      {product.description && <Text style={styles.description}>{product.description}</Text>}
-      <Text style={styles.price}>Rp {product.price.toLocaleString()}</Text>
-      <Text style={styles.stock}>Stok: {product.stock > 0 ? product.stock : "Habis"}</Text>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          title={isInCart ? "Sudah di Keranjang" : "Tambahkan ke Keranjang"}
-          onPress={handleAddToCart}
-          color={isInCart ? "#6c757d" : "#007bff"}
-          disabled={product.stock === 0 || isInCart}
-        />
-        <Button
-          title="Lihat Keranjang"
-          onPress={() => navigation.navigate('Cart')}
-          color="#28a745"
-        />
-        <Button
-          title="Kembali ke Beranda"
-          onPress={() => navigation.navigate('Home')}
-          color="#ffc107"
-        />
-      </View>
+      <Text style={styles.title}>Daftar Light Stick</Text>
+      <FlatList
+        data={products}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <View style={styles.productContainer}>
+            <Image source={{ uri: item.image }} style={styles.image} />
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.price}>Rp {item.price.toLocaleString()}</Text>
+            <Text style={styles.stock}>Stok: {item.stock > 0 ? item.stock : "Habis"}</Text>
+            <Button
+              title={isInCart[item._id] ? "Sudah di Keranjang" : "Tambahkan ke Keranjang"}
+              onPress={() => handleAddToCart(item)}
+              color={isInCart[item._id] ? "#6c757d" : "#007bff"}
+              disabled={item.stock === 0 || isInCart[item._id]}
+            />
+          </View>
+        )}
+      />
+      <Button title="Lihat Keranjang" onPress={() => navigation.navigate("Cart")} color="#28a745" />
+      <Button title="Kembali ke Beranda" onPress={() => navigation.navigate("Home")} color="#ffc107" />
     </View>
   );
 };
@@ -58,45 +75,39 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    alignItems: "center",
     backgroundColor: "#fff",
   },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  productContainer: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ddd",
+    alignItems: "center",
+  },
   image: {
-    width: "100%",
-    height: 300,
+    width: 100,
+    height: 100,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#ddd",
-    marginBottom: 15,
   },
   name: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    textAlign: "center",
-    color: "#555",
-    marginBottom: 10,
+    marginTop: 5,
   },
   price: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 16,
     color: "#28a745",
-    marginBottom: 5,
   },
   stock: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 14,
     color: "#d9534f",
-    marginBottom: 15,
-  },
-  buttonContainer: {
-    width: "100%",
-    flexDirection: "column",
-    gap: 10,
-    marginTop: 10,
   },
 });
 
