@@ -47,6 +47,11 @@ const AppNavigator = () => {
         component={ContactScreen} 
         options={{ title: '📞 Hubungi Kami' }} // ✅ Tambahkan ContactScreen ke dalam navigasi
       />
+      <Stack.ProfileScreen
+      name="Profile"
+      component={ProfileScreen}
+      options={{title: 'user'}}
+      />
     </Stack.Navigator>
   );
 };
