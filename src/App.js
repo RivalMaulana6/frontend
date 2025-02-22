@@ -9,7 +9,7 @@ export default function App() {
   useEffect(() => {
     const testAPI = async () => {
       try {
-        const response = await api.get("/api/test"); // Sesuaikan dengan endpoint backend
+        const response = await api.get("/api/products"); // Sesuaikan dengan endpoint backend
         console.log("Response:", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

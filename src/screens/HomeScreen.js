@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`${API_BASE_URL}/products`);
+      const response = await axios.get(`${API_BASE_URL}/api/products`);
       setProducts(response.data);
       setFilteredProducts(response.data);
     } catch (err) {

@@ -9,7 +9,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await api.get("/products");
+        const response = await api.get("/api/products");
         console.log("Fetched Products:", response.data); // ✅ Cek apakah data diterima
         setProducts(response.data);
       } catch (error) {
