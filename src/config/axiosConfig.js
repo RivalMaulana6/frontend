@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://e2d3-140-213-106-220.ngrok-free.app", // Ganti dengan URL ngrok terbaru
+  baseURL: process.env.EXPO_PUBLIC_API_BASE_URL, // Panggil dari .env
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
