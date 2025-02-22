@@ -1,7 +1,8 @@
 import axios from "axios";
+import config from "../utils/config";
 
 const api = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_BASE_URL, // Panggil dari .env
+  baseURL: config.API_BASE_URL,
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

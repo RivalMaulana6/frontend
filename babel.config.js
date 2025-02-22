@@ -14,6 +14,7 @@ module.exports = function (api) {
       ['module-resolver', {
         root: ['./src'],
         alias: {
+          "@config": "./src/axiosConfig",
           '@components': './src/components',
           '@navigation': './src/navigation',
         },

@@ -1,3 +1,8 @@
-import { EXPO_PUBLIC_API_BASE_URL } from "@env";
+import Constants from "expo-constants";
 
-export const API_BASE_URL = EXPO_PUBLIC_API_BASE_URL;
+// Ambil variabel dari app.config.js
+const API_BASE_URL = Constants.expoConfig.extra.API_BASE_URL;
+
+export default {
+  API_BASE_URL,
+};
