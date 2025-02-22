@@ -7,14 +7,15 @@ export default {
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
-    scheme: "light-stick-shop",
+    scheme: "light-stick-shop", // Untuk deep linking (opsional)
     userInterfaceStyle: "automatic",
     newArchEnabled: true,
-    owner: "rivalmaulans", // Tambahkan ini agar tidak error saat `eas build`
+    owner: "rivalmaulans", // Tambahkan owner agar tidak error
     ios: {
       supportsTablet: true,
     },
     android: {
+      package: "com.rivalmaulans.lightstickshop", // Wajib unik & tidak berubah setelah build pertama!
       adaptiveIcon: {
         foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#ffffff",
