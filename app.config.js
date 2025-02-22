@@ -3,7 +3,7 @@ import "dotenv/config"; // Untuk membaca .env
 export default {
   expo: {
     name: "Light Stick Shop",
-    slug: "Light-Stick-Shop",
+    slug: "frontend",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
