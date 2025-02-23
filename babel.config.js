@@ -14,13 +14,13 @@ module.exports = function (api) {
       ['module-resolver', {
         root: ['./src'],
         alias: {
-          "@config": "./src/config", // ✅ Sesuaikan dengan folder yang benar
+          '@config': './src/config',
           '@components': './src/components',
           '@navigation': './src/navigation',
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.mjs'],
-
-      'react-native-reanimated/plugin'
+      }],
+      'react-native-reanimated/plugin', // Perbaikan posisi plugin ini
     ],
   };
 };
