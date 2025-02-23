@@ -1,66 +1,75 @@
 import React, { useEffect, useState } from "react";
-import api from "../config/axiosConfig"; // ✅ Pastikan konfigurasi API benar
-import ProductCard from "./ProductCard"; // ✅ Pastikan file ini ada di folder yang sesuai
+import { View, Text, FlatList, ActivityIndicator, StyleSheet } from "react-native";
+import api from "@config/axiosConfig"; // ✅ Gunakan alias agar path lebih rapi
+import ProductCard from "@components/ProductCard"; // ✅ Gunakan alias agar lebih fleksibel
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ Tambahkan state loading
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await api.get("/api/products");
-        console.log("Fetched Products:", response.data); // ✅ Cek apakah data diterima
+        console.log("Fetched Products:", response.data);
         setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Gagal mengambil data produk.");
       } finally {
-        setLoading(false); // ✅ Pastikan loading selesai
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
 
-  const styles = React.useMemo(
-    () => ({
-      container: {
-        padding: "20px",
-        textAlign: "center",
-      },
-      title: {
-        fontSize: "24px",
-        marginBottom: "20px",
-      },
-      grid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-        gap: "20px",
-        justifyContent: "center",
-      },
-    }),
-    []
-  );
-
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Daftar Produk Light Stick</h2>
+    <View style={styles.container}>
+      <Text style={styles.title}>🛍️ Daftar Produk Light Stick</Text>
 
-      {loading ? ( // ✅ Tampilkan loading jika masih fetching data
-        <p>Loading produk...</p>
+      {loading ? (
+        <ActivityIndicator size="large" color="#007bff" />
+      ) : error ? (
+        <Text style={styles.error}>{error}</Text>
+      ) : products.length > 0 ? (
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => <ProductCard product={item} />}
+          contentContainerStyle={styles.list}
+        />
       ) : (
-        <div style={styles.grid}>
-          {products.length > 0 ? (
-            products.map((product) => <ProductCard key={product._id} product={product} />)
-          ) : (
-            <p>Produk tidak tersedia.</p>
-          )}
-        </div>
+        <Text style={styles.empty}>Produk tidak tersedia.</Text>
       )}
-    </div>
+    </View>
   );
 };
 
-
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+    alignItems: "center",
+    backgroundColor: "#f8f9fa",
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 15,
+    color: "#333",
+  },
+  list: {
+    width: "100%",
+  },
+  error: {
+    color: "red",
+    fontSize: 16,
+  },
+  empty: {
+    fontSize: 16,
+    color: "#777",
+  },
+});
 
 export default ProductList;

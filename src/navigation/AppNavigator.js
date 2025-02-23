@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CartScreen from '../screens/CartScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
-import ContactScreen from '../screens/ContactScreen'; // ✅ Tambahkan ContactScreen
+import ContactScreen from '../screens/ContactScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +28,7 @@ const AppNavigator = () => {
         name="Product" 
         component={ProductScreen} 
         options={({ route }) => ({
-          title: route.params.product.name, // Nama produk tampil di header
+          title: route.params?.product?.name || 'Detail Produk', // Menangani jika `route.params.product` undefined
         })} 
       />
       <Stack.Screen 
@@ -45,18 +44,15 @@ const AppNavigator = () => {
       <Stack.Screen 
         name="Contact" 
         component={ContactScreen} 
-        options={{ title: '📞 Hubungi Kami' }} // ✅ Tambahkan ContactScreen ke dalam navigasi
+        options={{ title: '📞 Hubungi Kami' }} 
       />
-      <Stack.ProfileScreen
-      name="Profile"
-      component={ProfileScreen}
-      options={{title: 'user'}}
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ title: '👤 Profil Pengguna' }} 
       />
     </Stack.Navigator>
   );
 };
 
-// Di dalam AppNavigator.js
-export default function AppNavigator() {
-  // ...kode navigator Anda
-}
+export default AppNavigator;

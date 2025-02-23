@@ -14,11 +14,12 @@ module.exports = function (api) {
       ['module-resolver', {
         root: ['./src'],
         alias: {
-          "@config": "./src/axiosConfig",
+          "@config": "./src/config", // ✅ Sesuaikan dengan folder yang benar
           '@components': './src/components',
           '@navigation': './src/navigation',
         },
-      }],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.mjs'],
+
       'react-native-reanimated/plugin'
     ],
   };
